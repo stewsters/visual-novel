@@ -1,8 +1,5 @@
-group 'com.stewsters'
-version '1.0-SNAPSHOT'
-
 buildscript {
-    ext.kotlin_version = '1.2.30'
+    ext.kotlin_version = '1.2.40'
 
     repositories {
         mavenCentral()
@@ -12,9 +9,16 @@ buildscript {
     }
 }
 
-apply plugin: 'java'
-apply plugin: 'kotlin'
+plugins {
+    id "java"
+    id "application"
+    id "org.jetbrains.kotlin.jvm" version "1.2.40"
+    id "com.github.johnrengelman.plugin-shadow" version "2.0.3"
+}
 
+mainClassName = "com.stewsters.visualNovel.MainKt"
+group 'com.stewsters'
+version '1.0-SNAPSHOT'
 sourceCompatibility = 1.8
 
 repositories {
@@ -31,4 +35,11 @@ compileKotlin {
 }
 compileTestKotlin {
     kotlinOptions.jvmTarget = "1.8"
+}
+
+// You need Graalvm installed for this
+task buildNative(type: Exec){
+    dependsOn(shadowJar)
+    workingDir shadowJar.destinationDir
+    commandLine "${System.env.GRAALVM_HOME}/bin/native-image", "-jar", shadowJar.archiveName
 }

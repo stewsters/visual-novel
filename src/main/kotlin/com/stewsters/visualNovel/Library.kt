@@ -57,12 +57,17 @@ class Question() {
             println("${line++}: $key")
         }
 
-        val option = readLine()
-        val selection = option?.toInt()
+        while (true) {
+            try {
+                val option = readLine()
+                var selection: Int? = option?.toInt()
+                optionMap[selection]?.invoke();
+                return
 
-        if (selection != null) {
-            println("Selected: " + selection)
-            optionMap[selection]?.invoke();
+            } catch (e: NumberFormatException) {
+                println("invalid number")
+            }
         }
+
     }
 }
