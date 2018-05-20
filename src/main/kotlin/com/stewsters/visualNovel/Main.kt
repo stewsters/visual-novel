@@ -6,7 +6,7 @@ val school = Location("school")
 val beach = Location("beach")
 
 // Looks
-val embarrased = Appearance("embarrased")
+val embarrassed = Appearance("embarrassed")
 val dejected = Appearance("dejected")
 
 // Characters
@@ -24,7 +24,7 @@ fun main(args: Array<String>) {
 
     ann asks "Aren't you guys going to go out already?" reply mapOf(
             "Uh, yeah, lets do it!" to {
-                rachael looks embarrased
+                rachael looks embarrassed
                 ann says "Awesome"
             },
             "No, gross." to {
@@ -41,8 +41,6 @@ fun main(args: Array<String>) {
                 scene(beach)
             }
     )
-
-
 }
 
 
