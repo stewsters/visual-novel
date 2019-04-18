@@ -10,9 +10,7 @@ enum class Gender {
 }
 
 data class Student(val name: String, val gender: Gender) {
-    override fun toString(): String {
-        return name
-    }
+    override fun toString()= name
 
     infix fun says(string: String) {
         println("${this.name}: $string")
@@ -25,27 +23,24 @@ data class Student(val name: String, val gender: Gender) {
     }
 
     infix fun looks(look: Appearance) {
-        println("$name looks $look");
+        // set character background image
+        println("$name looks $look")
     }
 }
 
 data class Appearance(val name: String) {
-    override fun toString(): String {
-        return name
-    }
+    override fun toString() = name
 }
 
 data class Location(val name: String) {
-    override fun toString(): String {
-        return name
-    }
+    override fun toString() = name
 }
 
 fun scene(background: Location) {
     println("Background changes to ${background}")
 }
 
-class Question() {
+class Question {
 
     infix fun reply(options: Map<String, () -> Unit>) {
 
